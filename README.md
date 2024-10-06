@@ -1,6 +1,6 @@
 # Asp.Net Core hosting: notes and experiments
 
-[Work in progress]
+[!!!Work in progress!!!]
 
 ## Windows Asp.Net Core hosting
 
@@ -58,13 +58,13 @@ AspNet Core Web app can be hosted in-process or out-of-process. The running proc
 ![](_imgs/iis_in_out.png)
 
 - "svchost.exe" is hosting the whole IIS
-- the second w3wp.exe is hoting the in-process web-app
-- the first w3wp.exe is hosting the out-of-process web-app. Notice the dotnet.exe child process running the app inside Kestrel. IIS and Kestrel commununicate over tcp/ip 127.0.0.1 port, passed by IIS to dotnet.exe as environment variable ASPNETCORE_PORT
+- the second w3wp.exe is hosting the in-process web-app
+- the first w3wp.exe is hosting the out-of-process web-app. Notice the dotnet.exe child process running the app inside Kestrel. IIS and Kestrel communicate over tcp/ip 127.0.0.1 port, passed by IIS to dotnet.exe as environment variable ASPNETCORE_PORT
 
 ![](_imgs/iis_kestrel_port.png)
 
 **WARNING:** 1 web application < - - > 1 app pool
-Do not assign more than one aspnet core web-app to a single iis app-pool. Otherwise you will get error *"HTTP Error 500.35 - ASP.NET Core does not support multiple apps in the same app pool"*
+Do not assign more than one asp.net core web-app to a single iis app-pool. Otherwise you will get error *"HTTP Error 500.35 - ASP.NET Core does not support multiple apps in the same app pool"*
 
 **Web.config**, normally created by VS2022 during publish to Folder, contains information used by IIS to map to ANCM and which hosting to use (in/out process).
 
@@ -92,7 +92,7 @@ ModuleFileName: C:\Program Files\dotnet\dotnet.exe
 
 ## IIS Windows Authentication
 
-In IIS, select the Application / Authentication, disable "Anonymous authentication" and enable "Windows Authentication".
+In full IIS, select the Web Application / Authentication section, disable "Anonymous authentication" and enable "Windows Authentication". The same behavior can be activated in IIS Express, modifying the launchSettings.json / iisSettings / "windowsAuthentication": true + "anonymousAuthentication": false.
 
 ![](_imgs/iis_win_auth.png)
 
@@ -100,7 +100,7 @@ The browser will ask for a username/password or will perform automatic integrate
 
 ![](_imgs/iis_login.png)
 
-The username of the authenticated user is visibile in C# as usual, through HttpContext.User.Identity. This work with in-prc and out-of-proc hosted application.
+The username of the authenticated user is visible in C# as usual, through HttpContext.User.Identity. This work with in-prc and out-of-proc hosted application.
 
 ```
 Hello AspNetCore IIS-IN
