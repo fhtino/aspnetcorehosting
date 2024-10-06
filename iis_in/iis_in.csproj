@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+		<UserSecretsId>c1241c44-28db-4dbe-8aab-260936af5b87</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SharedLib\SharedLib.csproj" />
+	</ItemGroup>
+
+</Project>
